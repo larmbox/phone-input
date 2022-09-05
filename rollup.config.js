@@ -1,6 +1,7 @@
 import { nodeResolve as resolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import { defineConfig } from 'rollup';
+import copy from 'rollup-plugin-copy';
 import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 
@@ -34,7 +35,18 @@ export default defineConfig([
       format: 'umd',
       sourcemap: false,
     },
-    plugins: [resolve(), typescript(), terser()],
+    plugins: [
+      resolve(),
+      typescript(),
+      terser(),
+      copy({
+        targets: [
+          { src: 'dist/index.browser.min.js', dest: 'docs/dist/' },
+          { src: 'dist/flags.webp', dest: 'docs/dist/' },
+          { src: 'dist/style/flags.css', dest: 'docs/dist/style/' },
+          { src: 'dist/style/phone-input.css', dest: 'docs/dist/style/' },
+        ]
+      })],
   },
   {
     input,
