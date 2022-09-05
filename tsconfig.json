@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2018",
+    "outDir": "build",
+    "declaration": true,
+    "strict": true,
+    "module": "esnext",
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "es2022",
+      "DOM"
+    ],
+    "esModuleInterop": true,
+  },
+  "include": [
+    "src"
+  ]
+}

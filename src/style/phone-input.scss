@@ -1,0 +1,96 @@
+$pi-class: 'pi' !default;
+$pi-flag-width: 24px !default;
+$pi-flag-height: 16px !default;
+$pi: $pi-class;
+
+.#{$pi} {
+  position: relative;
+  display: inline-block;
+}
+
+.flag-empty {
+  background-image: unset !important;
+}
+
+.#{$pi}-label {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: calc(100% - 2px);
+  user-select: none;
+  line-height: 1;
+  padding-left: 8px;
+  border: 1px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+
+  &.#{$pi}-with-dropdown {
+    cursor: pointer;
+  }
+}
+
+.#{$pi}-separator {
+  height: 1px;
+  width: 100%;
+  background-color: #dadee0;
+}
+
+.#{$pi}-dropdown {
+  position: fixed;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  margin-top: 0.25rem;
+  border-radius: 6px;
+  border: 1px solid #dadee0;
+
+  li {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    cursor: pointer;
+    &.highlighted {
+      background-color: #dadee0;
+    }
+
+    .#{$pi}-name {
+      flex: 1;
+    }
+  }
+}
+
+.#{$pi}-dropdown.open {
+  display: unset;
+}
+
+.#{$pi}-flag {
+  width: $pi-flag-width;
+  height: $pi-flag-height;
+  border-radius: 4px;
+  background-color: #dadee0;
+  border: 1px solid #dadee0;
+  margin-right: 0.25rem;
+}
+
+.#{$pi}-flag + .#{$pi}-country {
+  margin-left: 0.25rem;
+}
+
+.#{$pi}-flag + .#{$pi}-dialcode,
+.#{$pi}-country + .#{$pi}-dialcode,
+.#{$pi}-chevron + .#{$pi}-dialcode {
+  margin-left: 0.25rem;
+}
+
+.#{$pi}-chevron {
+  margin-left: 0.25rem;
+
+  svg {
+    fill: currentColor;
+  }
+}

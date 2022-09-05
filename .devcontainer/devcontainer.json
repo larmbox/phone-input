@@ -1,0 +1,15 @@
+{
+  "name": "@larmbox/phone-input",
+  "service": "phone-input",
+  "dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "settings": {},
+  "extensions": [
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ritwickdey.LiveServer"
+  ],
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
+}
