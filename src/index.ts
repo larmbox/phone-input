@@ -270,7 +270,10 @@ const useDropdown = (
     // Should be possible for user to define the order of these.
     if (options.dropdown.flag) {
       const flag = document.createElement('div');
-      flag.classList.add(className('flag'), `flag-${country.iso}`); // flags.scss class.
+      flag.classList.add(
+        className('flag'),
+        `flag-${country.iso.toLowerCase()}`,
+      ); // flags.scss class.
       element.appendChild(flag);
     }
 
