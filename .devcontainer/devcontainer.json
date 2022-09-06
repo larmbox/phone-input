@@ -5,8 +5,9 @@
   "workspaceFolder": "/workspace",
   "settings": {},
   "extensions": [
-    "EditorConfig.EditorConfig",
     "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "ritwickdey.LiveServer"
   ],
