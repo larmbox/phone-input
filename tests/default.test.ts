@@ -33,7 +33,7 @@ describe('build dom with default options', () => {
     expect(child).toHaveAttribute('data-country-code');
     expect(child).toHaveAttribute('data-dial-code');
 
-    expect(child.children[0]).toContainHTML('<div class="pi-flag flag-AF"></div>');
+    expect(child.children[0]).toContainHTML('<div class="pi-flag flag-af"></div>');
     expect(child.children[1]).toContainHTML(
       '<span class="pi-name">Afghanistan</span>',
     );
