@@ -804,8 +804,9 @@ export const attach = (
       }
 
       if (labels.flag) {
-        labels.flag.className =
-          utility.className('flag') + ' flag-' + (country || 'empty');
+        labels.flag.className = `${utility.className('flag')} flag-${
+          country?.toLowerCase() || 'empty'
+        }`;
       }
 
       if (labels.dialcode) {
