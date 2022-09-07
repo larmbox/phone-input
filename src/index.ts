@@ -300,15 +300,6 @@ const useDropdown = (
       options.meta.element.focus();
       close();
     });
-
-    // Click does not catch 'Enter' key, add separate event listener.
-    element.addEventListener('keyup', (event) => {
-      // Simulate click on 'Enter' press.
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        element.click();
-      }
-    });
   };
 
   /**
@@ -447,6 +438,7 @@ const useDropdown = (
     if (event.key === 'Escape') {
       return close();
     } else if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission when pressing Enter.
       if (list?.classList.contains('open') && highlighted) {
         setCountry(highlighted);
         return options.meta.element.focus();
