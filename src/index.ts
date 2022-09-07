@@ -52,6 +52,12 @@ interface DropdownOptions {
    * @default true
    */
   flag: boolean;
+  /**
+   * Vertical margin of dropdown in pixels.
+   *
+   * @default 8
+   */
+  margin: number;
 }
 
 export interface PhoneInputOptions {
@@ -143,6 +149,7 @@ const defaultOptions: PhoneInputOptions = {
     flag: true,
     country: true,
     dialcode: true,
+    margin: 8,
   },
   countries: {},
   label: {
@@ -350,6 +357,7 @@ const useDropdown = (
     }, 100);
 
     window.addEventListener('resize', resize);
+    window.addEventListener('scroll', resize);
     resize();
 
     const event = new CustomEvent('opendropdown');
@@ -370,6 +378,7 @@ const useDropdown = (
 
     document.removeEventListener('click', documentClick);
     window.removeEventListener('resize', resize);
+    window.removeEventListener('scroll', resize);
 
     const event = new CustomEvent('closedropdown');
     options.meta.element.dispatchEvent(event);
@@ -381,9 +390,33 @@ const useDropdown = (
   const resize = () => {
     if (!list || !options.dropdown) return;
 
+    // Space from bottom of input field to the window bottom edge.
+    const bottomSpace =
+      window.innerHeight - options.meta.parent.getBoundingClientRect().bottom;
+
+    // Space from top of input field to the window top edge.
+    const topSpace = options.meta.parent.getBoundingClientRect().top;
+
+    let height, top;
+    const flip = topSpace - bottomSpace > bottomSpace;
+
+    if (flip) {
+      height = topSpace - options.dropdown.margin * 2;
+      top =
+        options.meta.parent.getBoundingClientRect().top -
+        height -
+        options.dropdown.margin;
+    } else {
+      height = bottomSpace - options.dropdown.margin * 2;
+      top =
+        options.meta.parent.getBoundingClientRect().bottom +
+        options.dropdown.margin;
+    }
+
     list.style.width = options.meta.parent.clientWidth + 'px';
-    list.style.top = options.meta.parent.getBoundingClientRect().bottom + 'px';
+    list.style.height = height + 'px';
     list.style.left = options.meta.parent.getBoundingClientRect().left + 'px';
+    list.style.top = top + 'px';
   };
 
   /**
@@ -444,8 +477,10 @@ const useDropdown = (
         return options.meta.element.focus();
       }
     } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
       down();
     } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
       up();
     } else if (event.key.length === 1 && list?.classList.contains('open')) {
       if (timeout) {
@@ -566,22 +601,13 @@ export const attach = (
     if (!localOptions.dropdown) {
       localOptions.dropdown = {};
     } else if (localOptions.dropdown === true) {
-      options.dropdown = {
-        flag: true,
-        country: true,
-        dialcode: true,
-      };
+      options.dropdown = defaultOptions.dropdown;
     }
 
     if (!localOptions.label) {
       localOptions.label = {};
     } else if (localOptions.label === true) {
-      options.label = {
-        flag: true,
-        country: true,
-        dialcode: true,
-        chevron: true,
-      };
+      options.label = defaultOptions.label;
     }
 
     createDOMStructure();

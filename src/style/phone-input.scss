@@ -2,13 +2,13 @@ $pi-class: 'pi' !default;
 $pi-flag-width: 24px !default;
 $pi-flag-height: 16px !default;
 $pi-label-z-index: 25 !default;
+$pi-dropdown-height: 300px !default;
 $pi-dropdown-z-index: 50 !default;
 $pi: $pi-class;
 
 .#{$pi} {
   position: relative;
   display: inline-block;
-  width: 100%;
 }
 
 .flag-empty {
@@ -41,14 +41,13 @@ $pi: $pi-class;
 
 .#{$pi}-dropdown {
   position: fixed;
-  max-height: 300px;
+  max-height: $pi-dropdown-height;
   overflow-y: auto;
   display: none;
   list-style: none;
   padding: 0;
   margin: 0;
   background-color: #fff;
-  margin-top: 0.25rem;
   border-radius: 6px;
   border: 1px solid #dadee0;
   z-index: $pi-dropdown-z-index;
