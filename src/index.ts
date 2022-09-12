@@ -402,19 +402,22 @@ const useDropdown = (
 
     if (flip) {
       height = topSpace - options.dropdown.margin * 2;
+      if (list.getBoundingClientRect().height < 300) height = list.style.height = '';
+      else list.style.height = height + 'px';
       top =
         options.meta.parent.getBoundingClientRect().top -
-        height -
+        list.getBoundingClientRect().height -
         options.dropdown.margin;
     } else {
       height = bottomSpace - options.dropdown.margin * 2;
+      if (list.getBoundingClientRect().height < 300) height = list.style.height = '';
+      else list.style.height = height + 'px';
       top =
         options.meta.parent.getBoundingClientRect().bottom +
         options.dropdown.margin;
     }
 
     list.style.width = options.meta.parent.clientWidth + 'px';
-    list.style.height = height + 'px';
     list.style.left = options.meta.parent.getBoundingClientRect().left + 'px';
     list.style.top = top + 'px';
   };
