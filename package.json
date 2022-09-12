@@ -1,6 +1,6 @@
 {
   "name": "@larmbox/phone-input",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "description": "Create a phone input field from any input field.",
   "repository": "https://github.com/larmbox/phone-input",
